@@ -9,6 +9,7 @@ function ModalCreateRegisteredTime({ active, setActive, form: { getFieldDecorato
             createRegisteredTime(data: $data) {
                 id
                 timeRegistered
+                type
                 user {
                     id
                     name
@@ -64,10 +65,12 @@ function ModalCreateRegisteredTime({ active, setActive, form: { getFieldDecorato
                     )}
                 </Form.Item>
                 <Form.Item>
-                    <Select placeholder="Selecione o tipo de ponto">
-                        <Select.Option value="ENTRANCE">Entrada</Select.Option>
-                        <Select.Option value="EXIT">Saída</Select.Option>
-                    </Select>
+                    {getFieldDecorator('type', {})(
+                        <Select placeholder="Selecione o tipo de ponto">
+                            <Select.Option value="ENTRANCE">Entrada</Select.Option>
+                            <Select.Option value="EXIT">Saída</Select.Option>
+                        </Select>
+                    )}
                 </Form.Item>
             </Form>
         </Modal>

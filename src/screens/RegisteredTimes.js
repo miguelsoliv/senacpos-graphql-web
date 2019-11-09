@@ -14,6 +14,11 @@ const columns = [
         title: 'Usuário',
         dataIndex: 'user.name',
         key: 'user'
+    },
+    {
+        title: 'Tipo',
+        dataIndex: 'type',
+        key: 'type'
     }
 ];
 
@@ -25,6 +30,7 @@ export default function RegisteredTimes() {
             allRegisteredTimes {
                 id
                 timeRegistered
+                type
                 user {
                     id
                     name
@@ -38,6 +44,7 @@ export default function RegisteredTimes() {
             onCreatedRegisteredTime {
                 id
                 timeRegistered
+                type
                 user {
                     id
                     name
