@@ -67,8 +67,8 @@ function ModalCreateRegisteredTime({ active, setActive, form: { getFieldDecorato
                 <Form.Item>
                     {getFieldDecorator('type', {})(
                         <Select placeholder="Selecione o tipo de ponto">
-                            <Select.Option value="ENTRANCE">Entrada</Select.Option>
-                            <Select.Option value="EXIT">Saída</Select.Option>
+                            <Select.Option value="ENTRADA">Entrada</Select.Option>
+                            <Select.Option value="SAIDA">Saída</Select.Option>
                         </Select>
                     )}
                 </Form.Item>
