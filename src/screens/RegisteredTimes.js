@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Table, Button } from 'antd';
-import ModalCreateBook from '../components/ModalCreateBook';
+import ModalCreateRegisteredTime from '../components/ModalCreateRegisteredTime';
 import { useQuery, useSubscription } from 'react-apollo';
 import gql from 'graphql-tag';
 
@@ -71,7 +71,7 @@ export default function RegisteredTimes() {
                 Adicionar
             </Button>
             <Table dataSource={data && data.allRegisteredTimes} loading={loading} columns={columns} pagination={false} />
-            <ModalCreateBook active={active} setActive={setActive} />
+            <ModalCreateRegisteredTime active={active} setActive={setActive} />
         </>
     )
 }

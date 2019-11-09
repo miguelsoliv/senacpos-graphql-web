@@ -36,10 +36,10 @@ export default function ContentWrapper({ children }) {
                             defaultSelectedKeys={[location.pathname]}
                             defaultOpenKeys={['sub1']}
                             style={{ height: '100%' }}>
-                            <Menu.Item key="/books">
-                                <Link to="/books">
-                                    <Icon type="book" />
-                                    <span>Livros</span>
+                            <Menu.Item key="/registeredTimes">
+                                <Link to="/registeredTimes">
+                                    <Icon type="clock-circle" />
+                                    <span>Horas Registradas</span>
                                 </Link>
                             </Menu.Item>
                         </Menu>
