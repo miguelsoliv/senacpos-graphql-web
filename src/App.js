@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom'
 import ContentWrapper from './components/ContentWrapper';
-import Books from './screens/Books';
+import RegisteredTimes from './screens/RegisteredTimes';
 import Login from './screens/Login';
 import Register from './screens/Register';
 import { ApolloProvider } from 'react-apollo';
@@ -12,9 +12,9 @@ function App() {
     <ApolloProvider client={client}>
       <Router>
         <Switch>
-          <Route path="/books">
+          <Route path="/registeredTimes">
             <ContentWrapper>
-              <Books />
+              <RegisteredTimes />
             </ContentWrapper>
           </Route>
           <Route path="/login">

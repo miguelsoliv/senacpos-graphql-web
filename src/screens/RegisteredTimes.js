@@ -6,46 +6,28 @@ import gql from 'graphql-tag';
 
 const columns = [
     {
-        title: 'Título',
-        dataIndex: 'title',
-        key: 'title',
+        title: 'Hora Registrada',
+        dataIndex: 'timeRegistered',
+        key: 'timeRegistered'
     },
     {
-        title: 'ISBN',
-        dataIndex: 'ISBN',
-        key: 'ISBN',
-    },
-    {
-        title: 'Data de Publicação',
-        dataIndex: 'publicationDate',
-        key: 'publicationDate',
-    },
-    {
-        title: 'Genero',
-        dataIndex: 'genre',
-        key: 'genre',
-    },
-    {
-        title: 'Autor',
-        dataIndex: 'writer.firstname',
-        key: 'writer',
-    },
+        title: 'Usuário',
+        dataIndex: 'user.name',
+        key: 'user'
+    }
 ];
 
-export default function Books() {
+export default function RegisteredTimes() {
     const [active, setActive] = useState(false)
 
     const { data, loading, refetch, updateQuery } = useQuery(gql`
-        query allBooks {
-            allBooks {
+        query allRegisteredTimes {
+            allRegisteredTimes {
                 id
-                title
-                ISBN
-                publicationDate
-                genre
-                writer {
+                timeRegistered
+                user {
                     id
-                    firstname
+                    name
                 }
             }
         } 
@@ -53,15 +35,12 @@ export default function Books() {
 
     useSubscription(gql`
         subscription {
-            onCreatedBook {
+            onCreatedRegisteredTime {
                 id
-                title
-                ISBN
-                publicationDate
-                genre
-                writer {
+                timeRegistered
+                user {
                     id
-                    firstname
+                    name
                 }
             }
         }
@@ -73,9 +52,9 @@ export default function Books() {
                 }
 
                 return Object.assign({}, prev, {
-                    allBooks: [
-                        ...prev.allBooks,
-                        subscriptionData.data.onCreatedBook
+                    allRegisteredTimes: [
+                        ...prev.allRegisteredTimes,
+                        subscriptionData.data.onCreatedRegisteredTime
                     ]
                 })
             })
@@ -91,7 +70,7 @@ export default function Books() {
             <Button type="primary" onClick={() => setActive(true)} style={{ marginBottom: 16 }}>
                 Adicionar
             </Button>
-            <Table dataSource={data && data.allBooks} loading={loading} columns={columns} pagination={false} />
+            <Table dataSource={data && data.allRegisteredTimes} loading={loading} columns={columns} pagination={false} />
             <ModalCreateBook active={active} setActive={setActive} />
         </>
     )
