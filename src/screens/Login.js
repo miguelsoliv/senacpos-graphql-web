@@ -12,11 +12,9 @@ function Login({ form: { getFieldDecorator, validateFields, setFields } }) {
         mutation signin($email: String! $password: String!) {
             signin(email: $email password: $password) {
                 token
-                writer {
+                user {
                     id
-                    firstname
-                    lastname
-                    initials
+                    name
                     email
                 }
             }
@@ -50,8 +48,8 @@ function Login({ form: { getFieldDecorator, validateFields, setFields } }) {
 
                 if (data.signin.token) {
                     localStorage.setItem('token', data.signin.token)
-                    localStorage.setItem('user', JSON.stringify(data.signin.writer))
-                    history.push('/books')
+                    localStorage.setItem('user', JSON.stringify(data.signin.user))
+                    history.push('/registeredTimes')
                     return
                 }
             }
