@@ -17,12 +17,12 @@ export default function ContentWrapper({ children }) {
                 >
                     <Menu.Item key="/login">
                         <Link to="/login">
-                            Login
+                            Logar
                         </Link>
                     </Menu.Item>
                     <Menu.Item key="/register">
                         <Link to="/register">
-                            Register
+                            Registrar
                         </Link>
                     </Menu.Item>
                 </Menu>
