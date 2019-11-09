@@ -4,6 +4,7 @@ import { Link, useHistory } from 'react-router-dom'
 import './Login.scss'
 import { useMutation } from 'react-apollo';
 import gql from 'graphql-tag';
+
 function Login({ form: { getFieldDecorator, validateFields, setFields } }) {
     const history = useHistory()
 
@@ -55,7 +56,6 @@ function Login({ form: { getFieldDecorator, validateFields, setFields } }) {
                 }
             }
         })
-
     }
 
     return (
@@ -94,7 +94,6 @@ function Login({ form: { getFieldDecorator, validateFields, setFields } }) {
             </Form>
         </div>
     );
-
 }
 
 export default Form.create({ name: 'login' })(Login)

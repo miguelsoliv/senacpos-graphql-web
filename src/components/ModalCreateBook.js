@@ -45,10 +45,8 @@ function ModalCreateBook({ active, setActive, form: { getFieldDecorator, validat
                     resetFields()
                 }
             }
-
         })
     }
-    console.log(active)
 
     return (
         <Modal

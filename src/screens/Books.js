@@ -4,31 +4,6 @@ import ModalCreateBook from '../components/ModalCreateBook';
 import { useQuery, useSubscription } from 'react-apollo';
 import gql from 'graphql-tag';
 
-// const dataSource = [
-//     {
-//         id: "1",
-//         title: "Teste",
-//         ISBN: 2193821,
-//         publicationDate: "2019-05-05",
-//         genre: "ADVENTURE",
-//         writerName: "Miguel",
-//     }, {
-//         id: "2",
-//         title: "Teste",
-//         ISBN: 2193821,
-//         publicationDate: "2019-05-05",
-//         genre: "ADVENTURE",
-//         writerName: "Miguel",
-//     }, {
-//         id: "3",
-//         title: "Livro Teste",
-//         ISBN: 13412312,
-//         publicationDate: "2019-05-05",
-//         genre: null,
-//         writerName: "Miguel",
-//     }
-// ]
-
 const columns = [
     {
         title: 'Título',
@@ -91,26 +66,25 @@ export default function Books() {
             }
         }
     `, {
-            onSubscriptionData({ subscriptionData }) {
-                updateQuery((prev) => {
-                    if (!subscriptionData.data) {
-                        return prev
-                    }
+        onSubscriptionData({ subscriptionData }) {
+            updateQuery((prev) => {
+                if (!subscriptionData.data) {
+                    return prev
+                }
 
-                    return Object.assign({}, prev, {
-                        allBooks: [
-                            ...prev.allBooks,
-                            subscriptionData.data.onCreatedBook
-                        ]
-                    })
+                return Object.assign({}, prev, {
+                    allBooks: [
+                        ...prev.allBooks,
+                        subscriptionData.data.onCreatedBook
+                    ]
                 })
-            }
-        })
+            })
+        }
+    })
 
     useEffect(() => {
         refetch()
     }, [active, refetch])
-
 
     return (
         <>

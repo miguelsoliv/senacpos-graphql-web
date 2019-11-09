@@ -6,7 +6,6 @@ import { WebSocketLink } from 'apollo-link-ws';
 import { HttpLink, InMemoryCache } from 'apollo-boost';
 import { setContext } from 'apollo-link-context';
 
-
 const authLink = setContext((_, { headers }) => {
     const token = localStorage.getItem('token')
     return {

@@ -4,19 +4,15 @@ import { Link, useHistory } from 'react-router-dom'
 import './Register.scss'
 import { useMutation } from 'react-apollo';
 import gql from 'graphql-tag';
+
 function Register({ form: { getFieldDecorator, validateFields } }) {
     const history = useHistory()
 
     const [mutate, { loading }] = useMutation(gql`
-        mutation createWriter($data: CreateWriterInput!) {
-            createWriter(data: $data) {
+        mutation createUser($data: CreateUserInput!) {
+            createUser(data: $data) {
                 id
-                firstname
-                lastname
-                initials
-                birthday
-                gender
-                phone
+                name
                 email
                 role
             }
@@ -30,7 +26,7 @@ function Register({ form: { getFieldDecorator, validateFields } }) {
             if (!err) {
                 const { data, errors } = await mutate({
                     variables: {
-                        data: { ...values, role: "WRITER" }
+                        data: { ...values, role: "USER" }
                     }
                 })
 
@@ -42,15 +38,14 @@ function Register({ form: { getFieldDecorator, validateFields } }) {
                 }
             }
         })
-
     }
 
     return (
         <div className="register-wrapper">
             <Form onSubmit={handleSubmit}>
                 <Form.Item>
-                    {getFieldDecorator('firstname', {
-                        rules: [{ required: true, message: 'Digite seu primeiro nome' }],
+                    {getFieldDecorator('name', {
+                        rules: [{ required: true, message: 'Digite seu nome' }],
                     })(
                         <Input
                             prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
@@ -59,18 +54,8 @@ function Register({ form: { getFieldDecorator, validateFields } }) {
                     )}
                 </Form.Item>
                 <Form.Item>
-                    {getFieldDecorator('lastname', {
-                        rules: [{ required: true, message: 'Digite seu sobrenome!' }],
-                    })(
-                        <Input
-                            prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
-                            placeholder="Sobrenome"
-                        />,
-                    )}
-                </Form.Item>
-                <Form.Item>
                     {getFieldDecorator('email', {
-                        rules: [{ required: true, message: 'Digite seu email!' }],
+                        rules: [{ required: true, message: 'Digite seu e-mail!' }],
                     })(
                         <Input
                             prefix={<Icon type="mail" style={{ color: 'rgba(0,0,0,.25)' }} />}
@@ -91,7 +76,6 @@ function Register({ form: { getFieldDecorator, validateFields } }) {
                     )}
                 </Form.Item>
                 <Form.Item>
-
                     <div className="justify-between">
                         <Button loading={loading} type="primary" htmlType="submit">
                             Register
@@ -103,7 +87,6 @@ function Register({ form: { getFieldDecorator, validateFields } }) {
             </Form>
         </div>
     );
-
 }
 
 export default Form.create({ name: 'register' })(Register)
